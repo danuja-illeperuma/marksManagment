@@ -1,0 +1,60 @@
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+
+<div>
+
+<form method="POST" th:action="@{/saveStudent}">
+
+    <label> Registration No:</label>
+    <input type="text" name="regNo"/><br>
+
+
+    <label>Student Name: </label>
+    <input type="text" name="Name" placeholder="First Name" required="required" /><br>
+
+    <label> Date Of Birth: </label>
+    <input type="date" name="Dob"/><br>
+
+    <label> Email: </label>
+    <input type="email" name="Email"/><br>
+
+    <label>Contact: </label>
+    <input type="text" name="Contact"/>
+    <br>
+
+    <input type="submit" value="Submit">
+
+
+
+
+</form>
+
+    <div th:if="${error != null}">
+        <p th:text="${error}" style="color: red"></p>
+    </div>
+
+    <div th:if="${success != null}">
+        <p th:text="${success}" style="color: green"></p>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

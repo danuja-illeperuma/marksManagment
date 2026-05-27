@@ -1,0 +1,106 @@
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+
+<div>
+
+    <form method="POST" th:action="@{/ViewStudent}">
+
+        <label> Enter Registration No:</label>
+        <input type="text" name="regNo"/>
+
+        <br>
+
+
+        <input type="submit" value="Submit">
+
+        <table border="1" th:if="${student != null}">
+
+            <tr>
+                <th>Student Name</th>
+                <th>Date Of Birth</th>
+                <th>Contact Number</th>
+                <th>Email</th>
+            </tr>
+
+        <tr>
+            <td th:text="${student.Name}"></td>
+            <td th:text="${student.Dob}"></td>
+
+            <td th:text="${student.Contact}"></td>
+            <td th:text="${student.Email}"></td>
+        </tr>
+
+
+
+
+
+
+        </table>
+        <br>
+        <br>
+
+        <table border="1" th:if="${student != null && student.marks != null}">
+            <tr th:each="m : ${student.marks}">
+
+                <th>Quiz01</th>
+                <th>Quiz02</th>
+                <th>Quiz03</th>
+                <th>Mid_Marks</th>
+                <th>End_Marks</th>
+                <th>Subject_Name</th>
+                <th>Subject_code</th>
+
+            </tr>
+
+            <tr th:each="m : ${student.marks}">
+
+                <td th:text="${m.Quiz01}"></td>
+                <td th:text="${m.Quiz02}"></td>
+                <td th:text="${m.Quiz03}"></td>
+                <td th:text="${m.Mid_Marks}"></td>
+                <td th:text="${m.End_Marks}"></td>
+                <td th:text="${m.Subject_Name}"></td>
+                <td th:text="${m.Subject_Code}"></td>
+
+            </tr>
+        </table>
+
+
+        <div th:if="${student != null and student.marks.isEmpty()}">
+
+            <p>No marks available for this student.</p>
+
+        </div>
+
+        <div th:if="${searched == true} and ${student == null}">
+
+            <p>No Student Found... Try again</p>
+
+        </div>
+
+
+
+
+    </form>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

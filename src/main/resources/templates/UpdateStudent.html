@@ -1,0 +1,72 @@
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+
+<div>
+
+    <form method="GET" th:action="@{/FindStudent}">
+
+        <label> Enter Registration No:</label>
+        <input type="text" name="regNo"/>
+
+        <br>
+
+
+        <input type="submit" value="Find Student">
+
+    </form>
+
+    <div th:if="${student != null}">
+
+        <form method="POST" th:action="@{/UpdateStudent}">
+            <input type="text" name="regNo" th:value="${student.regNo}" hidden/>
+
+            <label> Update Student Name:</label>
+            <input type="text" name="Name" th:value="${student.Name}" required/>
+
+            <label> Update Student Contact Number:</label>
+            <input type="text" name="Contact" th:value="${student.Contact}" required/>
+
+            <label> Update Student Email:</label>
+            <input type="text" name="Email" th:value="${student.Email}" required/>
+
+            <label> Update Dob</label>
+            <input type="date" name="Dob" th:value="${student.Dob}" required/>
+
+            <input type="submit" value="Update Student">
+
+        </form>
+
+
+
+
+    </div>
+
+    <div th:if="${error != null}">
+        <p th:text="${error}" style="color: red;"></p>
+    </div>
+
+    <div th:if="${success != null}">
+        <p th:text="${success}" style="color: green;"></p>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+
+<div>
+
+    <form method="POST" th:action="@{/DeleteStudent}">
+
+        <label> Enter Registration No:</label>
+        <input type="text" name="regNo"/>
+
+        <br>
+
+
+        <input type="submit" value="delete Student">
+
+    </form>
+
+    <div th:if="${error != null}">
+        <p th:text="${error}" style="color: red;"></p>
+    </div>
+
+    <div th:if="${success != null}">
+        <p th:text="${success}" style="color: green;"></p>
+    </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
