@@ -1,65 +1,111 @@
+
 <html lang="en" xmlns:th="http://thymeleaf.org">
+
 <head>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Display All Marks</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
-<body>
 
+<body class="bg-gray-100 min-h-screen p-10">
 
-<div>
+<div class="max-w-7xl mx-auto">
 
+    <!-- Header -->
 
-        <table border="1" th:if="${marks != null}">
+    <div class="text-center mb-10">
+
+        <h1 class="text-5xl font-bold text-gray-800 mb-3">
+            Student Marks
+        </h1>
+
+        <p class="text-gray-500 text-lg">
+            Displaying all student marks and grades
+        </p>
+
+    </div>
+
+    <!-- Table -->
+
+    <div class="bg-white shadow-2xl rounded-3xl overflow-hidden">
+
+        <table class="w-full text-left border-collapse"
+               th:if="${marks != null}">
+
+            <!-- Table Header -->
+
+            <thead class="bg-blue-500 text-white">
+
             <tr>
-                <th>RegNo</th>
-                <th>Quiz01</th>
-                <th>Quiz02</th>
-                <th>Quiz03</th>
-                <th>Mid_Marks</th>
-                <th>End_Marks</th>
-                <th>Total</th>
-                <th>Grade</th>
-                <th>Subject_Name</th>
-                <th>Subject_code</th>
 
+                <th class="p-4">RegNo</th>
+                <th class="p-4">Quiz01</th>
+                <th class="p-4">Quiz02</th>
+                <th class="p-4">Quiz03</th>
+                <th class="p-4">Mid Marks</th>
+                <th class="p-4">End Marks</th>
+                <th class="p-4">Total</th>
+                <th class="p-4">Grade</th>
+                <th class="p-4">Subject Name</th>
+                <th class="p-4">Subject Code</th>
+
+            </tr>
+
+            </thead>
+
+            <!-- Table Body -->
+
+            <tbody>
+
+            <tr th:each="m : ${marks}"
+                class="border-b hover:bg-gray-100 transition duration-200">
+
+                <td class="p-4 font-semibold"
+                    th:text="${m.student.regNo}"></td>
+
+                <td class="p-4"
+                    th:text="${m.Quiz01}"></td>
+
+                <td class="p-4"
+                    th:text="${m.Quiz02}"></td>
+
+                <td class="p-4"
+                    th:text="${m.Quiz03}"></td>
+
+                <td class="p-4"
+                    th:text="${m.midMarks}"></td>
+
+                <td class="p-4"
+                    th:text="${m.endMarks}"></td>
+
+                <td class="p-4 font-bold text-blue-600"
+                    th:text="${m.totalMarks}"></td>
+
+                <td class="p-4 font-bold text-green-600"
+                    th:text="${m.grade}"></td>
+
+                <td class="p-4"
+                    th:text="${m.subjectName}"></td>
+
+                <td class="p-4"
+                    th:text="${m.subjectCode}"></td>
 
             </tr>
 
-            <tr th:each="m : ${marks}">
-                <td th:text="${m.student.regNo}"></td>
-                <td th:text="${m.Quiz01}"></td>
-                <td th:text="${m.Quiz02}"></td>
-                <td th:text="${m.Quiz03}"></td>
-                <td th:text="${m.midMarks}"></td>
-                <td th:text="${m.endMarks}"></td>
-                <th th:text="${m.totalMarks}"></th>
-                <th th:text="${m.grade}"></th>
-                <td th:text="${m.subjectName}"></td>
-                <td th:text="${m.subjectCode}"></td>
+            </tbody>
 
-            </tr>
         </table>
 
-
-
-
-
-
-
-
-
+    </div>
 
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
 </body>
+
 </html>
+

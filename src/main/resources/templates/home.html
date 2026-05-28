@@ -1,33 +1,58 @@
+
 <html lang="en" xmlns:th="http://thymeleaf.org">
+
 <head>
 
-    <link rel="stylesheet" th:href="@{/home.css}" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Home</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
-<body>
 
-    <div class="container">
-        <div class="child1">
-            <h1>Welcome</h1>
-            <ol>
-                <li><a th:href="@{/student_OP}">Student Operation</a></li>
-                <li><a th:href="@{/marks_OP}">Marks Operation</a></li>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
 
-            </ol>
-        </div>
+<div class="bg-white shadow-2xl rounded-3xl p-10 w-[450px]">
+
+    <div class="text-center">
+
+        <h1 class="text-5xl font-bold text-gray-800 mb-8">
+            Welcome
+        </h1>
+
+        <ol class="space-y-5">
+
+            <li>
+
+                <a th:href="@{/student_OP}"
+                   class="block bg-blue-500 hover:bg-blue-600 transition duration-300 text-white py-4 rounded-2xl text-lg font-semibold shadow-lg">
+
+                    Student Operation
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a th:href="@{/marks_OP}"
+                   class="block bg-green-500 hover:bg-green-600 transition duration-300 text-white py-4 rounded-2xl text-lg font-semibold shadow-lg">
+
+                    Marks Operation
+
+                </a>
+
+            </li>
+
+        </ol>
+
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
 
 </body>
+
 </html>
+

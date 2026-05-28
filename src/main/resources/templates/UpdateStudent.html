@@ -1,72 +1,174 @@
+
 <html lang="en" xmlns:th="http://thymeleaf.org">
+
 <head>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Update Student</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
-<body>
 
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-10">
 
-<div>
+<div class="bg-white shadow-2xl rounded-3xl p-10 w-[600px]">
 
-    <form method="GET" th:action="@{/FindStudent}">
+    <!-- Header -->
 
-        <label> Enter Registration No:</label>
-        <input type="text" name="regNo"/>
+    <div class="text-center mb-8">
 
-        <br>
+        <h1 class="text-4xl font-bold text-gray-800 mb-2">
+            Update Student
+        </h1>
 
+        <p class="text-gray-500">
+            Search and update student information
+        </p>
 
-        <input type="submit" value="Find Student">
+    </div>
+
+    <!-- Search Student Form -->
+
+    <form method="GET"
+          th:action="@{/FindStudent}"
+          class="space-y-5 mb-10">
+
+        <div>
+
+            <label class="block text-gray-700 font-semibold mb-2">
+                Enter Registration No
+            </label>
+
+            <input type="text"
+                   name="regNo"
+                   class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+        </div>
+
+        <button type="submit"
+                class="w-full bg-blue-500 hover:bg-blue-600 transition duration-300 text-white py-3 rounded-2xl text-lg font-semibold shadow-lg">
+
+            Find Student
+
+        </button>
 
     </form>
 
+    <!-- Update Form -->
+
     <div th:if="${student != null}">
 
-        <form method="POST" th:action="@{/UpdateStudent}">
-            <input type="text" name="regNo" th:value="${student.regNo}" hidden/>
+        <form method="POST"
+              th:action="@{/UpdateStudent}"
+              class="space-y-5">
 
-            <label> Update Student Name:</label>
-            <input type="text" name="Name" th:value="${student.Name}" required/>
+            <!-- Hidden Registration Number -->
 
-            <label> Update Student Contact Number:</label>
-            <input type="text" name="Contact" th:value="${student.Contact}" required/>
+            <input type="hidden"
+                   name="regNo"
+                   th:value="${student.regNo}"/>
 
-            <label> Update Student Email:</label>
-            <input type="text" name="Email" th:value="${student.Email}" required/>
+            <!-- Student Name -->
 
-            <label> Update Dob</label>
-            <input type="date" name="Dob" th:value="${student.Dob}" required/>
+            <div>
 
-            <input type="submit" value="Update Student">
+                <label class="block text-gray-700 font-semibold mb-2">
+                    Update Student Name
+                </label>
+
+                <input type="text"
+                       name="Name"
+                       th:value="${student.Name}"
+                       required
+                       class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-green-500">
+
+            </div>
+
+            <!-- Contact -->
+
+            <div>
+
+                <label class="block text-gray-700 font-semibold mb-2">
+                    Update Student Contact Number
+                </label>
+
+                <input type="text"
+                       name="Contact"
+                       th:value="${student.Contact}"
+                       required
+                       class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-green-500">
+
+            </div>
+
+            <!-- Email -->
+
+            <div>
+
+                <label class="block text-gray-700 font-semibold mb-2">
+                    Update Student Email
+                </label>
+
+                <input type="text"
+                       name="Email"
+                       th:value="${student.Email}"
+                       required
+                       class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-green-500">
+
+            </div>
+
+            <!-- DOB -->
+
+            <div>
+
+                <label class="block text-gray-700 font-semibold mb-2">
+                    Update Date Of Birth
+                </label>
+
+                <input type="date"
+                       name="Dob"
+                       th:value="${student.Dob}"
+                       required
+                       class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-green-500">
+
+            </div>
+
+            <!-- Update Button -->
+
+            <button type="submit"
+                    class="w-full bg-green-500 hover:bg-green-600 transition duration-300 text-white py-3 rounded-2xl text-lg font-semibold shadow-lg">
+
+                Update Student
+
+            </button>
 
         </form>
 
+    </div>
 
+    <!-- Error Message -->
 
+    <div th:if="${error}"
+         class="mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl">
+
+        <p th:text="${error}"></p>
 
     </div>
 
-    <div th:if="${error != null}">
-        <p th:text="${error}" style="color: red;"></p>
+    <!-- Success Message -->
+
+    <div th:if="${success}"
+         class="mt-5 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl">
+
+        <p th:text="${success}"></p>
+
     </div>
-
-    <div th:if="${success != null}">
-        <p th:text="${success}" style="color: green;"></p>
-    </div>
-
-
 
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
 </body>
+
 </html>
+

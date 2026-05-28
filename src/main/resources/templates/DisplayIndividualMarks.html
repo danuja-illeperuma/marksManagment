@@ -1,90 +1,155 @@
+
 <html lang="en" xmlns:th="http://thymeleaf.org">
+
 <head>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Individual Student Marks</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
-<body>
 
+<body class="bg-gray-100 min-h-screen p-10">
 
-<div>
+<div class="max-w-7xl mx-auto">
 
-    <form method="GET" th:action="@{/IndividualMarks}">
+    <!-- Header -->
 
-        <label> Enter Registration No:</label>
-        <input type="text" name="regNo"/>
+    <div class="text-center mb-10">
 
-        <br>
+        <h1 class="text-5xl font-bold text-gray-800 mb-3">
+            Individual Student Marks
+        </h1>
 
+        <p class="text-gray-500 text-lg">
+            Search and display student marks
+        </p>
 
-        <input type="submit" value="Submit">
+    </div>
 
+    <!-- Search Form -->
 
+    <div class="bg-white shadow-2xl rounded-3xl p-8 mb-10">
 
+        <form method="GET"
+              th:action="@{/IndividualMarks}"
+              class="space-y-5">
 
-    </form>
+            <div>
 
-    <div th:if="${student != null}">
+                <label class="block text-gray-700 font-semibold mb-2">
+                    Enter Registration No
+                </label>
 
-        <table border="1">
+                <input type="text"
+                       name="regNo"
+                       class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+            </div>
+
+            <button type="submit"
+                    class="w-full bg-blue-500 hover:bg-blue-600 transition duration-300 text-white py-3 rounded-2xl text-lg font-semibold shadow-lg">
+
+                Search Student
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Student Marks Table -->
+
+    <div th:if="${student != null}"
+         class="bg-white shadow-2xl rounded-3xl overflow-hidden">
+
+        <table class="w-full text-left border-collapse">
+
+            <!-- Header -->
+
+            <thead class="bg-green-500 text-white">
+
             <tr>
-                <th>RegNo</th>
-                <th>Student Name</th>
-                <th>Quiz01</th>
-                <th>Quiz02</th>
-                <th>Quiz03</th>
-                <th>Mid_Marks</th>
-                <th>End_Marks</th>
-                <th>Total</th>
-                <th>Grade</th>
-                <th>Subject_Name</th>
-                <th>Subject_code</th>
 
+                <th class="p-4">RegNo</th>
+                <th class="p-4">Student Name</th>
+                <th class="p-4">Quiz01</th>
+                <th class="p-4">Quiz02</th>
+                <th class="p-4">Quiz03</th>
+                <th class="p-4">Mid Marks</th>
+                <th class="p-4">End Marks</th>
+                <th class="p-4">Total</th>
+                <th class="p-4">Grade</th>
+                <th class="p-4">Subject Name</th>
+                <th class="p-4">Subject Code</th>
+
+            </tr>
+
+            </thead>
+
+            <!-- Body -->
+
+            <tbody>
+
+            <tr th:each="m : ${student.marks}"
+                class="border-b hover:bg-gray-100 transition duration-200">
+
+                <td class="p-4 font-semibold"
+                    th:text="${student.regNo}"></td>
+
+                <td class="p-4"
+                    th:text="${student.name}"></td>
+
+                <td class="p-4"
+                    th:text="${m.Quiz01}"></td>
+
+                <td class="p-4"
+                    th:text="${m.Quiz02}"></td>
+
+                <td class="p-4"
+                    th:text="${m.Quiz03}"></td>
+
+                <td class="p-4"
+                    th:text="${m.midMarks}"></td>
+
+                <td class="p-4"
+                    th:text="${m.endMarks}"></td>
+
+                <td class="p-4 font-bold text-blue-600"
+                    th:text="${m.totalMarks}"></td>
+
+                <td class="p-4 font-bold text-green-600"
+                    th:text="${m.grade}"></td>
+
+                <td class="p-4"
+                    th:text="${m.subjectName}"></td>
+
+                <td class="p-4"
+                    th:text="${m.subjectCode}"></td>
 
             </tr>
 
-            <tr th:each="m : ${student.marks}">
-                <td th:text="${student.regNo}"></td>
-                <td th:text="${student.name}"></td>
-                <td th:text="${m.Quiz01}"></td>
-                <td th:text="${m.Quiz02}"></td>
-                <td th:text="${m.Quiz03}"></td>
-                <td th:text="${m.midMarks}"></td>
-                <td th:text="${m.endMarks}"></td>
-                <th th:text="${m.totalMarks}"></th>
-                <th th:text="${m.grade}"></th>
-                <td th:text="${m.subjectName}"></td>
-                <td th:text="${m.subjectCode}"></td>
+            </tbody>
 
-            </tr>
         </table>
 
-
-
-
     </div>
 
+    <!-- Error Message -->
 
+    <div th:if="${error}"
+         class="mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl">
 
+        <p th:text="${error}"></p>
 
-    <div th:if="${error != null}">
-        <p th:text="${error}" style="color: red"></p>
     </div>
-
-
-
-
 
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
 </body>
+
 </html>
+

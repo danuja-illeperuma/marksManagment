@@ -1,60 +1,142 @@
+
 <html lang="en" xmlns:th="http://thymeleaf.org">
+
 <head>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Student</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
-<body>
 
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
 
-<div>
+<div class="bg-white shadow-2xl rounded-3xl p-10 w-[500px]">
 
-<form method="POST" th:action="@{/saveStudent}">
+    <div class="text-center mb-8">
 
-    <label> Registration No:</label>
-    <input type="text" name="regNo"/><br>
+        <h1 class="text-4xl font-bold text-gray-800 mb-2">
+            Add Student
+        </h1>
 
+        <p class="text-gray-500">
+            Enter student information
+        </p>
 
-    <label>Student Name: </label>
-    <input type="text" name="Name" placeholder="First Name" required="required" /><br>
-
-    <label> Date Of Birth: </label>
-    <input type="date" name="Dob"/><br>
-
-    <label> Email: </label>
-    <input type="email" name="Email"/><br>
-
-    <label>Contact: </label>
-    <input type="text" name="Contact"/>
-    <br>
-
-    <input type="submit" value="Submit">
-
-
-
-
-</form>
-
-    <div th:if="${error != null}">
-        <p th:text="${error}" style="color: red"></p>
     </div>
 
-    <div th:if="${success != null}">
-        <p th:text="${success}" style="color: green"></p>
+    <form method="POST" th:action="@{/saveStudent}" class="space-y-5">
+
+        <!-- Registration Number -->
+
+        <div>
+
+            <label class="block text-gray-700 font-semibold mb-2">
+                Registration No
+            </label>
+
+            <input type="text"
+                   name="regNo"
+                   class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+        </div>
+
+        <!-- Student Name -->
+
+        <div>
+
+            <label class="block text-gray-700 font-semibold mb-2">
+                Student Name
+            </label>
+
+            <input type="text"
+                   name="Name"
+                   placeholder="Enter Student Name"
+                   required="required"
+                   class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+        </div>
+
+        <!-- Date Of Birth -->
+
+        <div>
+
+            <label class="block text-gray-700 font-semibold mb-2">
+                Date Of Birth
+            </label>
+
+            <input type="date"
+                   name="Dob"
+                   class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+        </div>
+
+        <!-- Email -->
+
+        <div>
+
+            <label class="block text-gray-700 font-semibold mb-2">
+                Email
+            </label>
+
+            <input type="email"
+                   name="Email"
+                   class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+        </div>
+
+        <!-- Contact -->
+
+        <div>
+
+            <label class="block text-gray-700 font-semibold mb-2">
+                Contact
+            </label>
+
+            <input type="text"
+                   name="Contact"
+                   class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+        </div>
+
+        <!-- Submit Button -->
+
+        <button type="submit"
+                class="w-full bg-blue-500 hover:bg-blue-600 transition duration-300 text-white py-3 rounded-2xl text-lg font-semibold shadow-lg">
+
+            Submit
+
+        </button>
+
+    </form>
+
+
+    <!-- Error Message -->
+
+    <div th:if="${error}"
+         class="mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl">
+
+        <p th:text="${error}"></p>
+
+    </div>
+
+    <!-- Success Message -->
+
+    <div th:if="${success}"
+         class="mt-5 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl">
+
+        <p th:text="${success}"></p>
+
     </div>
 
 
 
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
 </body>
+
 </html>
+

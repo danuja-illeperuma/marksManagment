@@ -1,106 +1,188 @@
+
 <html lang="en" xmlns:th="http://thymeleaf.org">
+
 <head>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>View Student</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
-<body>
 
+<body class="bg-gray-100 min-h-screen p-10">
 
-<div>
+<div class="max-w-7xl mx-auto">
 
-    <form method="POST" th:action="@{/ViewStudent}">
+    <!-- Header -->
 
-        <label> Enter Registration No:</label>
-        <input type="text" name="regNo"/>
+    <div class="text-center mb-10">
 
-        <br>
+        <h1 class="text-5xl font-bold text-gray-800 mb-3">
+            View Student
+        </h1>
 
+        <p class="text-gray-500 text-lg">
+            Search and display student information
+        </p>
 
-        <input type="submit" value="Submit">
+    </div>
 
-        <table border="1" th:if="${student != null}">
+    <!-- Search Form -->
+
+    <div class="bg-white shadow-2xl rounded-3xl p-8 mb-10">
+
+        <form method="POST"
+              th:action="@{/ViewStudent}"
+              class="space-y-5">
+
+            <div>
+
+                <label class="block text-gray-700 font-semibold mb-2">
+                    Enter Registration No
+                </label>
+
+                <input type="text"
+                       name="regNo"
+                       class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+            </div>
+
+            <button type="submit"
+                    class="w-full bg-blue-500 hover:bg-blue-600 transition duration-300 text-white py-3 rounded-2xl text-lg font-semibold shadow-lg">
+
+                Search Student
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Student Information -->
+
+    <div th:if="${student != null}"
+         class="bg-white shadow-2xl rounded-3xl overflow-hidden mb-10">
+
+        <table class="w-full text-left border-collapse">
+
+            <thead class="bg-green-500 text-white">
 
             <tr>
-                <th>Student Name</th>
-                <th>Date Of Birth</th>
-                <th>Contact Number</th>
-                <th>Email</th>
+
+                <th class="p-4">Student Name</th>
+                <th class="p-4">Date Of Birth</th>
+                <th class="p-4">Contact Number</th>
+                <th class="p-4">Email</th>
+
             </tr>
 
-        <tr>
-            <td th:text="${student.Name}"></td>
-            <td th:text="${student.Dob}"></td>
+            </thead>
 
-            <td th:text="${student.Contact}"></td>
-            <td th:text="${student.Email}"></td>
-        </tr>
+            <tbody>
 
+            <tr class="border-b hover:bg-gray-100 transition duration-200">
 
+                <td class="p-4"
+                    th:text="${student.Name}"></td>
 
+                <td class="p-4"
+                    th:text="${student.Dob}"></td>
 
+                <td class="p-4"
+                    th:text="${student.Contact}"></td>
 
+                <td class="p-4"
+                    th:text="${student.Email}"></td>
+
+            </tr>
+
+            </tbody>
 
         </table>
-        <br>
-        <br>
 
-        <table border="1" th:if="${student != null && student.marks != null}">
+    </div>
+
+    <!-- Marks Table -->
+
+    <div th:if="${student != null && student.marks != null}"
+         class="bg-white shadow-2xl rounded-3xl overflow-hidden">
+
+        <table class="w-full text-left border-collapse">
+
+            <thead class="bg-blue-500 text-white">
+
             <tr>
 
-                <th>Quiz01</th>
-                <th>Quiz02</th>
-                <th>Quiz03</th>
-                <th>Mid_Marks</th>
-                <th>End_Marks</th>
-                <th>Subject_Name</th>
-                <th>Subject_code</th>
+                <th class="p-4">Quiz01</th>
+                <th class="p-4">Quiz02</th>
+                <th class="p-4">Quiz03</th>
+                <th class="p-4">Mid Marks</th>
+                <th class="p-4">End Marks</th>
+                <th class="p-4">Subject Name</th>
+                <th class="p-4">Subject Code</th>
 
             </tr>
 
-            <tr th:each="m : ${student.marks}">
+            </thead>
 
-                <td th:text="${m.Quiz01}"></td>
-                <td th:text="${m.Quiz02}"></td>
-                <td th:text="${m.Quiz03}"></td>
-                <td th:text="${m.midMarks}"></td>
-                <td th:text="${m.endMarks}"></td>
-                <td th:text="${m.subjectName}"></td>
-                <td th:text="${m.subjectCode}"></td>
+            <tbody>
+
+            <tr th:each="m : ${student.marks}"
+                class="border-b hover:bg-gray-100 transition duration-200">
+
+                <td class="p-4"
+                    th:text="${m.Quiz01}"></td>
+
+                <td class="p-4"
+                    th:text="${m.Quiz02}"></td>
+
+                <td class="p-4"
+                    th:text="${m.Quiz03}"></td>
+
+                <td class="p-4"
+                    th:text="${m.midMarks}"></td>
+
+                <td class="p-4"
+                    th:text="${m.endMarks}"></td>
+
+                <td class="p-4"
+                    th:text="${m.subjectName}"></td>
+
+                <td class="p-4"
+                    th:text="${m.subjectCode}"></td>
 
             </tr>
+
+            </tbody>
+
         </table>
 
+    </div>
 
-        <div th:if="${student != null and student.marks.isEmpty()}">
+    <!-- No Marks Message -->
 
-            <p>No marks available for this student.</p>
+    <div th:if="${student != null and student.marks.isEmpty()}"
+         class="mt-5 bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded-xl">
 
-        </div>
+        <p>No marks available for this student.</p>
 
-        <div th:if="${searched == true} and ${student == null}">
+    </div>
 
-            <p>No Student Found... Try again</p>
+    <!-- Student Not Found -->
 
-        </div>
+    <div th:if="${searched == true} and ${student == null}"
+         class="mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl">
 
+        <p>No Student Found... Try again</p>
 
-
-
-    </form>
-
-
+    </div>
 
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
 </body>
+
 </html>
+

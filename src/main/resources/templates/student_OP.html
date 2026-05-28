@@ -1,36 +1,91 @@
+
 <html lang="en" xmlns:th="http://thymeleaf.org">
+
 <head>
 
-    <link rel="stylesheet" th:href="@{/home.css}" />
-</head>
-<body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="container">
-    <div class="child1">
-        <h1>Welcome</h1>
-        <ol>
-            <li><a th:href="@{/Add_Student}">Add a Student</a></li>
-             <li><a th:href="@{/viewstudent}">View a Student</a></li>
-            <li><a th:href="@{/updateStudent}">Update a Student</a></li>
-            <li><a th:href="@{deletestudent}">Delete a Student</a></li>
-            <li><a th:href="@{/}">Home</a></li>
+    <title>Student Operations</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+<div class="bg-white shadow-2xl rounded-3xl p-10 w-[550px]">
+
+    <div class="text-center">
+
+        <h1 class="text-5xl font-bold text-gray-800 mb-10">
+            Student Operations
+        </h1>
+
+        <ol class="space-y-5">
+
+            <li>
+
+                <a th:href="@{/Add_Student}"
+                   class="block bg-blue-500 hover:bg-blue-600 transition duration-300 text-white py-4 rounded-2xl text-lg font-semibold shadow-lg">
+
+                    Add a Student
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a th:href="@{/viewstudent}"
+                   class="block bg-green-500 hover:bg-green-600 transition duration-300 text-white py-4 rounded-2xl text-lg font-semibold shadow-lg">
+
+                    View a Student
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a th:href="@{/updateStudent}"
+                   class="block bg-yellow-500 hover:bg-yellow-600 transition duration-300 text-white py-4 rounded-2xl text-lg font-semibold shadow-lg">
+
+                    Update a Student
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a th:href="@{/deletestudent}"
+                   class="block bg-red-500 hover:bg-red-600 transition duration-300 text-white py-4 rounded-2xl text-lg font-semibold shadow-lg">
+
+                    Delete a Student
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a th:href="@{/}"
+                   class="block bg-gray-700 hover:bg-gray-800 transition duration-300 text-white py-4 rounded-2xl text-lg font-semibold shadow-lg">
+
+                    Home
+
+                </a>
+
+            </li>
 
         </ol>
+
     </div>
+
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
+
 </html>
+
