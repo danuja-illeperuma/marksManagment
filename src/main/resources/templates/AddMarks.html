@@ -1,0 +1,72 @@
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+
+<div>
+
+    <form method="GET" th:action="@{/findstum}">
+
+        <label> Registration No:</label>
+        <input type="text" name="regNo"/><br>
+
+
+        <input type="submit" value="Find Student">
+
+
+
+
+    </form>
+
+    <div th:if="${student!=null}">
+        <form method="POST" th:action="@{/AddMarks}">
+        <input type="text" name="regNo" th:value=${student.regNo} hidden >
+        <label> Quiz 01: </label>
+        <input type="text" name="Quiz01" required/><br>
+        <label> Quiz 02: </label>
+        <input type="text" name="Quiz02" required/><br>
+        <label> Quiz 03: </label>
+        <input type="text" name="Quiz03" required/><br>
+        <label> Mid Mark: </label>
+        <input type="text" name="midMarks" required/><br>
+        <label> End Mark: </label>
+        <input type="text" name="endMarks" required/><br>
+        <label> Subject Name: </label>
+        <input type="text" name="subjectName" required/><br>
+        <label> Subject Code: </label>
+        <input type="text" name="subjectCode" required/><br>
+        <input type="submit" value="Add Marks">
+        </form>
+    </div>
+
+
+
+
+
+    <div th:if="${error != null}">
+        <p th:text="${error}" style="color: red"></p>
+    </div>
+
+    <div th:if="${success != null}">
+        <p th:text="${success}" style="color: green"></p>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

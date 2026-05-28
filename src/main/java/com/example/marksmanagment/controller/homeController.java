@@ -17,6 +17,11 @@ public class homeController {
     return "student_OP";
     }
 
+    @GetMapping("/marks_OP")
+    public String marksOP(){
+      return "marks_OP";
+    }
+
 
 
 }

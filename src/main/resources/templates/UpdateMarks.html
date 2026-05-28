@@ -1,0 +1,76 @@
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+
+<div>
+
+    <form method="GET" th:action="@{/findupdatemark}">
+
+        <label> Registration No:</label>
+        <input type="text" name="regNo" required/><br>
+
+        <label>Subject code: </label>
+        <input type="text" name="subjectCode" required/><br>
+
+
+        <input type="submit" value="Find update marks">
+
+
+
+
+    </form>
+
+    <div th:if="${mark!=null}">
+        <form method="POST" th:action="@{/UpdateMarks}">
+            <input type="text" name="regNo" th:value=${mark.student.regNo} hidden >
+            <label> Quiz 01: </label>
+            <input type="text" name="Quiz01" th:value="${mark.Quiz01}" required/><br>
+            <input type="text" name="id" th:value="${mark.id}" required/><br>
+            <label> Quiz 02: </label>
+            <input type="text" name="Quiz02" th:value="${mark.Quiz02}" required/><br>
+            <label> Quiz 03: </label>
+            <input type="text" name="Quiz03"th:value="${mark.Quiz03}" required/><br>
+            <label> Mid Mark: </label>
+            <input type="text" name="midMarks" th:value="${mark.midMarks}"required/><br>
+            <label> End Mark: </label>
+            <input type="text" name="endMarks"th:value="${mark.endMarks}" required/><br>
+            <label> Subject Name: </label>
+            <input type="text" name="subjectName"th:value="${mark.subjectName}" required/><br>
+
+            <input type="text" name="subjectCode" th:value="${mark.subjectCode}" hidden=""/><br>
+            <input type="submit" value="Update Marks">
+        </form>
+    </div>
+
+
+
+
+
+    <div th:if="${error != null}">
+        <p th:text="${error}" style="color: red"></p>
+    </div>
+
+    <div th:if="${success != null}">
+        <p th:text="${success}" style="color: green"></p>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

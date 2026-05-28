@@ -1,0 +1,65 @@
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+
+<div>
+
+
+        <table border="1" th:if="${marks != null}">
+            <tr>
+                <th>RegNo</th>
+                <th>Quiz01</th>
+                <th>Quiz02</th>
+                <th>Quiz03</th>
+                <th>Mid_Marks</th>
+                <th>End_Marks</th>
+                <th>Total</th>
+                <th>Grade</th>
+                <th>Subject_Name</th>
+                <th>Subject_code</th>
+
+
+            </tr>
+
+            <tr th:each="m : ${marks}">
+                <td th:text="${m.student.regNo}"></td>
+                <td th:text="${m.Quiz01}"></td>
+                <td th:text="${m.Quiz02}"></td>
+                <td th:text="${m.Quiz03}"></td>
+                <td th:text="${m.midMarks}"></td>
+                <td th:text="${m.endMarks}"></td>
+                <th th:text="${m.totalMarks}"></th>
+                <th th:text="${m.grade}"></th>
+                <td th:text="${m.subjectName}"></td>
+                <td th:text="${m.subjectCode}"></td>
+
+            </tr>
+        </table>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
