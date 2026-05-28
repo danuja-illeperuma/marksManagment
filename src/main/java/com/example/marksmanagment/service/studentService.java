@@ -73,13 +73,13 @@ public class studentService {
                 deleteMarksEntity deleteMark = new deleteMarksEntity();
 
                 deleteMark.setRegNo(student.getRegNo());
-                deleteMark.setEnd_Marks(marksEntity.getEnd_Marks());
-                deleteMark.setMid_Marks(marksEntity.getMid_Marks());
+                deleteMark.setEnd_Marks(marksEntity.getEndMarks());
+                deleteMark.setMid_Marks(marksEntity.getMidMarks());
                 deleteMark.setQuiz02(marksEntity.getQuiz02());
                 deleteMark.setQuiz03(marksEntity.getQuiz03());
                 deleteMark.setQuiz01(marksEntity.getQuiz01());
-                deleteMark.setSubject_Code(marksEntity.getSubject_Code());
-                deleteMark.setSubject_Name(marksEntity.getSubject_Name());
+                deleteMark.setSubject_Code(marksEntity.getSubjectCode());
+                deleteMark.setSubject_Name(marksEntity.getSubjectName());
 
                 deleteMarksRepo.save(deleteMark);
 

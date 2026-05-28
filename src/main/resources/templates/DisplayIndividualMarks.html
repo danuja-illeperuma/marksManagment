@@ -7,7 +7,7 @@
 
 <div>
 
-    <form method="POST" th:action="@{/ViewStudent}">
+    <form method="GET" th:action="@{/IndividualMarks}">
 
         <label> Enter Registration No:</label>
         <input type="text" name="regNo"/>
@@ -17,52 +17,40 @@
 
         <input type="submit" value="Submit">
 
-        <table border="1" th:if="${student != null}">
 
+
+
+    </form>
+
+    <div th:if="${student != null}">
+
+        <table border="1">
             <tr>
+                <th>RegNo</th>
                 <th>Student Name</th>
-                <th>Date Of Birth</th>
-                <th>Contact Number</th>
-                <th>Email</th>
-            </tr>
-
-        <tr>
-            <td th:text="${student.Name}"></td>
-            <td th:text="${student.Dob}"></td>
-
-            <td th:text="${student.Contact}"></td>
-            <td th:text="${student.Email}"></td>
-        </tr>
-
-
-
-
-
-
-        </table>
-        <br>
-        <br>
-
-        <table border="1" th:if="${student != null && student.marks != null}">
-            <tr>
-
                 <th>Quiz01</th>
                 <th>Quiz02</th>
                 <th>Quiz03</th>
                 <th>Mid_Marks</th>
                 <th>End_Marks</th>
+                <th>Total</th>
+                <th>Grade</th>
                 <th>Subject_Name</th>
                 <th>Subject_code</th>
+
 
             </tr>
 
             <tr th:each="m : ${student.marks}">
-
+                <td th:text="${student.regNo}"></td>
+                <td th:text="${student.name}"></td>
                 <td th:text="${m.Quiz01}"></td>
                 <td th:text="${m.Quiz02}"></td>
                 <td th:text="${m.Quiz03}"></td>
                 <td th:text="${m.midMarks}"></td>
                 <td th:text="${m.endMarks}"></td>
+                <th th:text="${m.totalMarks}"></th>
+                <th th:text="${m.grade}"></th>
                 <td th:text="${m.subjectName}"></td>
                 <td th:text="${m.subjectCode}"></td>
 
@@ -70,22 +58,18 @@
         </table>
 
 
-        <div th:if="${student != null and student.marks.isEmpty()}">
 
-            <p>No marks available for this student.</p>
 
-        </div>
-
-        <div th:if="${searched == true} and ${student == null}">
-
-            <p>No Student Found... Try again</p>
-
-        </div>
+    </div>
 
 
 
 
-    </form>
+    <div th:if="${error != null}">
+        <p th:text="${error}" style="color: red"></p>
+    </div>
+
+
 
 
 

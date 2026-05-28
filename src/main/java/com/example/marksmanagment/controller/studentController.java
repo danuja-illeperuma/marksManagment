@@ -1,6 +1,8 @@
 package com.example.marksmanagment.controller;
 import com.example.marksmanagment.entity.studentEntity;
+import com.example.marksmanagment.repositery.deleteStudentRepo;
 import com.example.marksmanagment.repositery.studentRepo;
+import com.example.marksmanagment.service.deleteStudentService;
 import com.example.marksmanagment.service.studentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,11 @@ public class studentController {
     @Autowired
     private studentService studentService;
 
+    @Autowired
+    private deleteStudentService deleteStudentService;
+
+
+
     @GetMapping("/Add_Student")
     public String Add_Student(){
         return "Add_Student";
@@ -24,14 +31,15 @@ public class studentController {
     @PostMapping("/saveStudent")
     public String saveStudent(studentEntity student, RedirectAttributes redirectAttributes){
 
-
-        if(studentService.exists(student.getRegNo())){
+        student.setRegNo(student.getRegNo().toUpperCase().trim());
+        if(studentService.exists(student.getRegNo()) || deleteStudentService.exists(student.getRegNo())){
 
             redirectAttributes.addFlashAttribute("error","Registration number already exists");
             return "redirect:/Add_Student";
 
         }
         try {
+
             studentService.SaveStudent(student);
             redirectAttributes.addFlashAttribute("success","Student has been saved successfully");
         }
