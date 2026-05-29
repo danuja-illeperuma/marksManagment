@@ -1,4 +1,5 @@
 package com.example.marksmanagment.controller;
+import com.example.marksmanagment.entity.marksEntity;
 import com.example.marksmanagment.entity.studentEntity;
 import com.example.marksmanagment.repositery.deleteStudentRepo;
 import com.example.marksmanagment.repositery.studentRepo;
@@ -62,9 +63,12 @@ public class studentController {
 
     @PostMapping("/ViewStudent")
     public String viewStudent(@RequestParam String regNo, Model model){
+        regNo = regNo.toUpperCase().trim();
+        studentEntity student = studentService.GetStudentByRegNo(regNo);
 
-        model.addAttribute("student",studentService.GetStudentByRegNo(regNo));
+        model.addAttribute("student",student);
         model.addAttribute("searched", true);
+
         return "ViewStudent";
 
     }
@@ -76,6 +80,7 @@ public class studentController {
 
     @GetMapping("/FindStudent")
     public String updateStudent(@RequestParam String regNo,Model model){
+        regNo = regNo.toUpperCase().trim();
 
         if (!studentService.exists(regNo)){
             model.addAttribute("error","Registration number does not exist");
@@ -108,6 +113,7 @@ public class studentController {
 
     @PostMapping("/DeleteStudent")
     public String deleteStudent(@RequestParam String regNo,RedirectAttributes redirectAttributes){
+        regNo = regNo.toUpperCase().trim();
         if (!studentService.exists(regNo)){
             redirectAttributes.addFlashAttribute("error","Registration number does not exist");
             return "redirect:/deletestudent";

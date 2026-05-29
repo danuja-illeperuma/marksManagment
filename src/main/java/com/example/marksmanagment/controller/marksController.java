@@ -45,6 +45,7 @@ public class marksController {
 
     @PostMapping("/AddMarks")
     public String addmarks(marksEntity marksEntity , @RequestParam String regNo , RedirectAttributes redirectAttributes) {
+        regNo = regNo.toUpperCase().trim();
 
         marksEntity.setSubjectCode(marksEntity.getSubjectCode().toUpperCase().trim());
 
@@ -86,7 +87,7 @@ public class marksController {
     @PostMapping("/UpdateMarks")
     public String updatemarks(marksEntity marks, RedirectAttributes redirectAttributes , @RequestParam String regNo) {
 
-
+        regNo = regNo.toUpperCase().trim();
 
         try {
             marks.setStudent(studentService.GetStudentByRegNo(regNo));
@@ -116,6 +117,7 @@ public class marksController {
 
     @GetMapping("/IndividualMarks")
     public String individualmarks(Model model , @RequestParam String regNo) {
+        regNo = regNo.toUpperCase().trim();
 
         if(!studentService.exists(regNo)){
             model.addAttribute("error","student doesn't exist");
