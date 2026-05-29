@@ -6,217 +6,292 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Update Marks</title>
+    <title>Update Marks | Marks Management System</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
-<body class="bg-gray-100 min-h-screen flex items-center justify-center p-10">
+<body class="min-h-screen overflow-y-auto bg-gradient-to-br from-emerald-600 via-blue-600 to-indigo-700">
 
-<div class="bg-white shadow-2xl rounded-3xl p-10 w-[600px]">
+<!-- Animated Background -->
 
-    <!-- Header -->
+<div class="fixed inset-0 overflow-hidden -z-10">
 
-    <div class="text-center mb-8">
+    <div class="absolute top-10 left-10 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
 
-        <h1 class="text-4xl font-bold text-gray-800 mb-2">
-            Update Marks
-        </h1>
+    <div class="absolute bottom-10 right-10 w-96 h-96 bg-green-300/10 rounded-full blur-3xl animate-pulse"></div>
 
-        <p class="text-gray-500">
-            Search and update student marks
-        </p>
+    <div class="absolute top-1/2 left-1/2 w-80 h-80 bg-cyan-300/10 rounded-full blur-3xl animate-bounce"></div>
+
+</div>
+
+<div class="max-w-3xl mx-auto py-10 px-4">
+
+    <!-- Navigation -->
+
+    <div class="flex flex-wrap gap-3 mb-6">
+
+        <a href="javascript:history.back()"
+           class="bg-white/20 backdrop-blur-lg text-white px-5 py-2 rounded-xl hover:bg-white/30 transition">
+
+            ← Back
+
+        </a>
+
+        <a th:href="@{/}"
+           class="bg-white/20 backdrop-blur-lg text-white px-5 py-2 rounded-xl hover:bg-white/30 transition">
+
+            🏠 Home
+
+        </a>
 
     </div>
 
-    <!-- Search Form -->
+    <!-- Main Card -->
 
-    <form method="GET"
-          th:action="@{/findupdatemark}"
-          class="space-y-5 mb-10">
+    <div class="bg-white/15 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl p-8">
 
-        <div>
+        <!-- Header -->
 
-            <label class="block text-gray-700 font-semibold mb-2">
-                Registration No
-            </label>
+        <div class="text-center mb-8">
 
-            <input type="text"
-                   name="regNo"
-                   required
-                   class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
-
-        </div>
-
-        <div>
-
-            <label class="block text-gray-700 font-semibold mb-2">
-                Subject Code
-            </label>
-
-            <input type="text"
-                   name="subjectCode"
-                   required
-                   class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
-
-        </div>
-
-        <button type="submit"
-                class="w-full bg-blue-500 hover:bg-blue-600 transition duration-300 text-white py-3 rounded-2xl text-lg font-semibold shadow-lg">
-
-            Find Update Marks
-
-        </button>
-
-    </form>
-
-    <!-- Update Form -->
-
-    <div th:if="${mark!=null}">
-
-        <form method="POST"
-              th:action="@{/UpdateMarks}"
-              class="space-y-5">
-
-            <!-- Hidden Fields -->
-
-            <input type="hidden"
-                   name="regNo"
-                   th:value="${mark.student.regNo}">
-
-            <input type="hidden"
-                   name="id"
-                   th:value="${mark.id}">
-
-            <input type="hidden"
-                   name="subjectCode"
-                   th:value="${mark.subjectCode}">
-
-            <!-- Quiz 01 -->
-
-            <div>
-
-                <label class="block text-gray-700 font-semibold mb-2">
-                    Quiz 01
-                </label>
-
-                <input type="text"
-                       name="Quiz01"
-                       th:value="${mark.Quiz01}"
-                       required
-                       class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-green-500">
-
+            <div class="text-6xl mb-3">
+                ✏️
             </div>
 
-            <!-- Quiz 02 -->
-
-            <div>
-
-                <label class="block text-gray-700 font-semibold mb-2">
-                    Quiz 02
-                </label>
-
-                <input type="text"
-                       name="Quiz02"
-                       th:value="${mark.Quiz02}"
-                       required
-                       class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-green-500">
-
-            </div>
-
-            <!-- Quiz 03 -->
-
-            <div>
-
-                <label class="block text-gray-700 font-semibold mb-2">
-                    Quiz 03
-                </label>
-
-                <input type="text"
-                       name="Quiz03"
-                       th:value="${mark.Quiz03}"
-                       required
-                       class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-green-500">
-
-            </div>
-
-            <!-- Mid Marks -->
-
-            <div>
-
-                <label class="block text-gray-700 font-semibold mb-2">
-                    Mid Marks
-                </label>
-
-                <input type="text"
-                       name="midMarks"
-                       th:value="${mark.midMarks}"
-                       required
-                       class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-green-500">
-
-            </div>
-
-            <!-- End Marks -->
-
-            <div>
-
-                <label class="block text-gray-700 font-semibold mb-2">
-                    End Marks
-                </label>
-
-                <input type="text"
-                       name="endMarks"
-                       th:value="${mark.endMarks}"
-                       required
-                       class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-green-500">
-
-            </div>
-
-            <!-- Subject Name -->
-
-            <div>
-
-                <label class="block text-gray-700 font-semibold mb-2">
-                    Subject Name
-                </label>
-
-                <input type="text"
-                       name="subjectName"
-                       th:value="${mark.subjectName}"
-                       required
-                       class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-green-500">
-
-            </div>
-
-            <!-- Update Button -->
-
-            <button type="submit"
-                    class="w-full bg-green-500 hover:bg-green-600 transition duration-300 text-white py-3 rounded-2xl text-lg font-semibold shadow-lg">
+            <h1 class="text-5xl font-bold text-white mb-2">
 
                 Update Marks
+
+            </h1>
+
+            <p class="text-white/80">
+
+                Search and update student marks
+
+            </p>
+
+        </div>
+
+        <!-- Search Form -->
+
+        <form method="GET"
+              th:action="@{/findupdatemark}"
+              class="space-y-5 mb-10">
+
+            <div>
+
+                <label class="block text-white font-semibold mb-2">
+
+                    Registration Number
+
+                </label>
+
+                <input type="text"
+                       name="regNo"
+                       required
+                       class="w-full bg-white/90 rounded-xl p-4 focus:outline-none focus:ring-4 focus:ring-white/50">
+
+            </div>
+
+            <div>
+
+                <label class="block text-white font-semibold mb-2">
+
+                    Subject Code
+
+                </label>
+
+                <input type="text"
+                       name="subjectCode"
+                       required
+                       class="w-full bg-white/90 rounded-xl p-4 focus:outline-none focus:ring-4 focus:ring-white/50">
+
+            </div>
+
+            <button type="submit"
+                    class="w-full bg-blue-500 hover:bg-blue-600 transition duration-300 text-white py-4 rounded-2xl text-lg font-semibold shadow-lg">
+
+                Find Update Marks
 
             </button>
 
         </form>
 
-    </div>
+        <!-- Update Form -->
 
-    <!-- Error Message -->
+        <div th:if="${mark!=null}">
 
-    <div th:if="${error}"
-         class="mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl">
+            <div class="bg-white/10 rounded-2xl p-4 mb-6 border border-white/20">
 
-        <p th:text="${error}"></p>
+                <h3 class="text-xl font-bold text-white">
 
-    </div>
+                    Marks Record Found
 
-    <!-- Success Message -->
+                </h3>
 
-    <div th:if="${success}"
-         class="mt-5 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl">
+                <p class="text-white/80 mt-1">
 
-        <p th:text="${success}"></p>
+                    Registration:
+                    <span th:text="${mark.student.regNo}"></span>
+
+                </p>
+
+            </div>
+
+            <form method="POST"
+                  th:action="@{/UpdateMarks}"
+                  class="space-y-5">
+
+                <input type="hidden"
+                       name="regNo"
+                       th:value="${mark.student.regNo}">
+
+                <input type="hidden"
+                       name="id"
+                       th:value="${mark.id}">
+
+                <input type="hidden"
+                       name="subjectCode"
+                       th:value="${mark.subjectCode}">
+
+                <div>
+
+                    <label class="block text-white font-semibold mb-2">
+
+                        Quiz 01
+
+                    </label>
+
+                    <input type="text"
+                           name="Quiz01"
+                           th:value="${mark.Quiz01}"
+                           required
+                           class="w-full bg-white/90 rounded-xl p-4 focus:outline-none focus:ring-4 focus:ring-green-300">
+
+                </div>
+
+                <div>
+
+                    <label class="block text-white font-semibold mb-2">
+
+                        Quiz 02
+
+                    </label>
+
+                    <input type="text"
+                           name="Quiz02"
+                           th:value="${mark.Quiz02}"
+                           required
+                           class="w-full bg-white/90 rounded-xl p-4 focus:outline-none focus:ring-4 focus:ring-green-300">
+
+                </div>
+
+                <div>
+
+                    <label class="block text-white font-semibold mb-2">
+
+                        Quiz 03
+
+                    </label>
+
+                    <input type="text"
+                           name="Quiz03"
+                           th:value="${mark.Quiz03}"
+                           required
+                           class="w-full bg-white/90 rounded-xl p-4 focus:outline-none focus:ring-4 focus:ring-green-300">
+
+                </div>
+
+                <div>
+
+                    <label class="block text-white font-semibold mb-2">
+
+                        Mid Marks
+
+                    </label>
+
+                    <input type="text"
+                           name="midMarks"
+                           th:value="${mark.midMarks}"
+                           required
+                           class="w-full bg-white/90 rounded-xl p-4 focus:outline-none focus:ring-4 focus:ring-green-300">
+
+                </div>
+
+                <div>
+
+                    <label class="block text-white font-semibold mb-2">
+
+                        End Marks
+
+                    </label>
+
+                    <input type="text"
+                           name="endMarks"
+                           th:value="${mark.endMarks}"
+                           required
+                           class="w-full bg-white/90 rounded-xl p-4 focus:outline-none focus:ring-4 focus:ring-green-300">
+
+                </div>
+
+                <div>
+
+                    <label class="block text-white font-semibold mb-2">
+
+                        Subject Name
+
+                    </label>
+
+                    <input type="text"
+                           name="subjectName"
+                           th:value="${mark.subjectName}"
+                           required
+                           class="w-full bg-white/90 rounded-xl p-4 focus:outline-none focus:ring-4 focus:ring-green-300">
+
+                </div>
+
+                <button type="submit"
+                        class="w-full bg-green-500 hover:bg-green-600 transition duration-300 text-white py-4 rounded-2xl text-lg font-semibold shadow-lg">
+
+                    Update Marks
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Error -->
+
+        <div th:if="${error}"
+             class="mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl">
+
+            <p th:text="${error}"></p>
+
+        </div>
+
+        <!-- Success -->
+
+        <div th:if="${success}"
+             class="mt-5 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl">
+
+            <p th:text="${success}"></p>
+
+        </div>
+
+        <!-- Footer -->
+
+        <div class="mt-8 pt-6 border-t border-white/20 text-center">
+
+            <span class="bg-white/10 px-4 py-2 rounded-full text-white text-sm">
+
+                👨‍💻 Developed by Danuja Illeperuma
+
+            </span>
+
+        </div>
 
     </div>
 

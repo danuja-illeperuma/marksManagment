@@ -6,100 +6,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Display All Marks</title>
+    <title>Display All Marks | Marks Management System</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
-<body class="bg-gray-100 min-h-screen p-10">
+<body class="min-h-screen overflow-y-auto bg-gradient-to-br from-green-600 via-blue-600 to-indigo-700">
 
-<div class="max-w-7xl mx-auto">
+<!-- Animated Background -->
+
+<div class="fixed inset-0 overflow-hidden -z-10">
+
+    <div class="absolute top-10 left-10 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+
+    <div class="absolute bottom-10 right-10 w-96 h-96 bg-green-300/10 rounded-full blur-3xl animate-pulse"></div>
+
+    <div class="absolute top-1/2 left-1/2 w-80 h-80 bg-cyan-300/10 rounded-full blur-3xl animate-bounce"></div>
+
+</div>
+
+<div class="max-w-7xl mx-auto py-10 px-4">
+
+    <!-- Navigation -->
+
+    <div class="flex flex-wrap gap-3 mb-6">
+
+        <a href="javascript:history.back()"
+           class="bg-white/20 backdrop-blur-lg text-white px-5 py-2 rounded-xl hover:bg-white/30 transition">
+
+            ← Back
+
+        </a>
+
+        <a th:href="@{/}"
+           class="bg-white/20 backdrop-blur-lg text-white px-5 py-2 rounded-xl hover:bg-white/30 transition">
+
+            🏠 Home
+
+        </a>
+
+    </div>
 
     <!-- Header -->
 
     <div class="text-center mb-10">
 
-        <h1 class="text-5xl font-bold text-gray-800 mb-3">
+        <div class="text-6xl mb-3">
+            📊
+        </div>
+
+        <h1 class="text-5xl font-bold text-white mb-3">
+
             Student Marks
+
         </h1>
 
-        <p class="text-gray-500 text-lg">
+        <p class="text-white/80 text-lg">
+
             Displaying all student marks and grades
+
         </p>
 
     </div>
 
-    <!-- Table -->
+    <!-- Table Card -->
 
-    <div class="bg-white shadow-2xl rounded-3xl overflow-hidden">
+    <div class="bg-white/15 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl overflow-hidden">
 
-        <table class="w-full text-left border-collapse"
-               th:if="${marks != null}">
+        <div class="overflow-x-auto">
 
-            <!-- Table Header -->
+            <table class="w-full text-left border-collapse"
+                   th:if="${marks != null}">
 
-            <thead class="bg-blue-500 text-white">
+                <!-- Header -->
 
-            <tr>
+                <thead class="bg-white/20 text-white">
 
-                <th class="p-4">RegNo</th>
-                <th class="p-4">Quiz01</th>
-                <th class="p-4">Quiz02</th>
-                <th class="p-4">Quiz03</th>
-                <th class="p-4">Mid Marks</th>
-                <th class="p-4">End Marks</th>
-                <th class="p-4">Total</th>
-                <th class="p-4">Grade</th>
-                <th class="p-4">Subject Name</th>
-                <th class="p-4">Subject Code</th>
+                <tr>
 
-            </tr>
+                    <th class="p-4">Reg No</th>
+                    <th class="p-4">Quiz 01</th>
+                    <th class="p-4">Quiz 02</th>
+                    <th class="p-4">Quiz 03</th>
+                    <th class="p-4">Mid Marks</th>
+                    <th class="p-4">End Marks</th>
+                    <th class="p-4">Total</th>
+                    <th class="p-4">Grade</th>
+                    <th class="p-4">Subject Name</th>
+                    <th class="p-4">Subject Code</th>
 
-            </thead>
+                </tr>
 
-            <!-- Table Body -->
+                </thead>
 
-            <tbody>
+                <!-- Body -->
 
-            <tr th:each="m : ${marks}"
-                class="border-b hover:bg-gray-100 transition duration-200">
+                <tbody>
 
-                <td class="p-4 font-semibold"
-                    th:text="${m.student.regNo}"></td>
+                <tr th:each="m : ${marks}"
+                    class="border-b border-white/10 hover:bg-white/10 transition">
 
-                <td class="p-4"
-                    th:text="${m.Quiz01}"></td>
+                    <td class="p-4 font-semibold text-white"
+                        th:text="${m.student.regNo}"></td>
 
-                <td class="p-4"
-                    th:text="${m.Quiz02}"></td>
+                    <td class="p-4 text-white"
+                        th:text="${m.Quiz01}"></td>
 
-                <td class="p-4"
-                    th:text="${m.Quiz03}"></td>
+                    <td class="p-4 text-white"
+                        th:text="${m.Quiz02}"></td>
 
-                <td class="p-4"
-                    th:text="${m.midMarks}"></td>
+                    <td class="p-4 text-white"
+                        th:text="${m.Quiz03}"></td>
 
-                <td class="p-4"
-                    th:text="${m.endMarks}"></td>
+                    <td class="p-4 text-white"
+                        th:text="${m.midMarks}"></td>
 
-                <td class="p-4 font-bold text-blue-600"
-                    th:text="${m.totalMarks}"></td>
+                    <td class="p-4 text-white"
+                        th:text="${m.endMarks}"></td>
 
-                <td class="p-4 font-bold text-green-600"
-                    th:text="${m.grade}"></td>
+                    <td class="p-4 font-bold text-yellow-300"
+                        th:text="${m.totalMarks}"></td>
 
-                <td class="p-4"
-                    th:text="${m.subjectName}"></td>
+                    <td class="p-4 font-bold text-green-300"
+                        th:text="${m.grade}"></td>
 
-                <td class="p-4"
-                    th:text="${m.subjectCode}"></td>
+                    <td class="p-4 text-white"
+                        th:text="${m.subjectName}"></td>
 
-            </tr>
+                    <td class="p-4 text-white"
+                        th:text="${m.subjectCode}"></td>
 
-            </tbody>
+                </tr>
 
-        </table>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+
+    <div class="mt-8 text-center">
+
+        <span class="bg-white/10 px-4 py-2 rounded-full text-white text-sm">
+
+            👨‍💻 Developed by Danuja Illeperuma
+
+        </span>
 
     </div>
 

@@ -6,33 +6,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Individual Student Marks</title>
+    <title>Individual Student Marks | Marks Management System</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
-<body class="bg-gray-100 min-h-screen p-10">
+<body class="min-h-screen overflow-y-auto bg-gradient-to-br from-emerald-600 via-blue-600 to-indigo-700">
 
-<div class="max-w-7xl mx-auto">
+<!-- Animated Background -->
+
+<div class="fixed inset-0 overflow-hidden -z-10">
+
+    <div class="absolute top-10 left-10 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+
+    <div class="absolute bottom-10 right-10 w-96 h-96 bg-green-300/10 rounded-full blur-3xl animate-pulse"></div>
+
+    <div class="absolute top-1/2 left-1/2 w-80 h-80 bg-cyan-300/10 rounded-full blur-3xl animate-bounce"></div>
+
+</div>
+
+<div class="max-w-7xl mx-auto py-10 px-4">
+
+    <!-- Navigation -->
+
+    <div class="flex flex-wrap gap-3 mb-6">
+
+        <a href="javascript:history.back()"
+           class="bg-white/20 backdrop-blur-lg text-white px-5 py-2 rounded-xl hover:bg-white/30 transition">
+
+            ← Back
+
+        </a>
+
+        <a th:href="@{/}"
+           class="bg-white/20 backdrop-blur-lg text-white px-5 py-2 rounded-xl hover:bg-white/30 transition">
+
+            🏠 Home
+
+        </a>
+
+    </div>
 
     <!-- Header -->
 
     <div class="text-center mb-10">
 
-        <h1 class="text-5xl font-bold text-gray-800 mb-3">
+        <div class="text-6xl mb-3">
+            🎯
+        </div>
+
+        <h1 class="text-5xl font-bold text-white mb-3">
+
             Individual Student Marks
+
         </h1>
 
-        <p class="text-gray-500 text-lg">
+        <p class="text-white/80 text-lg">
+
             Search and display student marks
+
         </p>
 
     </div>
 
-    <!-- Search Form -->
+    <!-- Search Card -->
 
-    <div class="bg-white shadow-2xl rounded-3xl p-8 mb-10">
+    <div class="bg-white/15 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl p-8 mb-8">
 
         <form method="GET"
               th:action="@{/IndividualMarks}"
@@ -40,18 +80,20 @@
 
             <div>
 
-                <label class="block text-gray-700 font-semibold mb-2">
-                    Enter Registration No
+                <label class="block text-white font-semibold mb-2">
+
+                    Enter Registration Number
+
                 </label>
 
                 <input type="text"
                        name="regNo"
-                       class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                       class="w-full bg-white/90 rounded-xl p-4 focus:outline-none focus:ring-4 focus:ring-white/50">
 
             </div>
 
             <button type="submit"
-                    class="w-full bg-blue-500 hover:bg-blue-600 transition duration-300 text-white py-3 rounded-2xl text-lg font-semibold shadow-lg">
+                    class="w-full bg-blue-500 hover:bg-blue-600 transition duration-300 text-white py-4 rounded-2xl text-lg font-semibold shadow-lg">
 
                 Search Student
 
@@ -61,80 +103,80 @@
 
     </div>
 
-    <!-- Student Marks Table -->
+    <!-- Marks Table -->
 
     <div th:if="${student != null}"
-         class="bg-white shadow-2xl rounded-3xl overflow-hidden">
+         class="bg-white/15 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl overflow-hidden">
 
-        <table class="w-full text-left border-collapse">
+        <div class="overflow-x-auto">
 
-            <!-- Header -->
+            <table class="w-full text-left border-collapse">
 
-            <thead class="bg-green-500 text-white">
+                <thead class="bg-white/20 text-white">
 
-            <tr>
+                <tr>
 
-                <th class="p-4">RegNo</th>
-                <th class="p-4">Student Name</th>
-                <th class="p-4">Quiz01</th>
-                <th class="p-4">Quiz02</th>
-                <th class="p-4">Quiz03</th>
-                <th class="p-4">Mid Marks</th>
-                <th class="p-4">End Marks</th>
-                <th class="p-4">Total</th>
-                <th class="p-4">Grade</th>
-                <th class="p-4">Subject Name</th>
-                <th class="p-4">Subject Code</th>
+                    <th class="p-4">Reg No</th>
+                    <th class="p-4">Student Name</th>
+                    <th class="p-4">Quiz 01</th>
+                    <th class="p-4">Quiz 02</th>
+                    <th class="p-4">Quiz 03</th>
+                    <th class="p-4">Mid Marks</th>
+                    <th class="p-4">End Marks</th>
+                    <th class="p-4">Total</th>
+                    <th class="p-4">Grade</th>
+                    <th class="p-4">Subject Name</th>
+                    <th class="p-4">Subject Code</th>
 
-            </tr>
+                </tr>
 
-            </thead>
+                </thead>
 
-            <!-- Body -->
+                <tbody>
 
-            <tbody>
+                <tr th:each="m : ${student.marks}"
+                    class="border-b border-white/10 hover:bg-white/10 transition">
 
-            <tr th:each="m : ${student.marks}"
-                class="border-b hover:bg-gray-100 transition duration-200">
+                    <td class="p-4 font-semibold text-white"
+                        th:text="${student.regNo}"></td>
 
-                <td class="p-4 font-semibold"
-                    th:text="${student.regNo}"></td>
+                    <td class="p-4 text-white"
+                        th:text="${student.name}"></td>
 
-                <td class="p-4"
-                    th:text="${student.name}"></td>
+                    <td class="p-4 text-white"
+                        th:text="${m.Quiz01}"></td>
 
-                <td class="p-4"
-                    th:text="${m.Quiz01}"></td>
+                    <td class="p-4 text-white"
+                        th:text="${m.Quiz02}"></td>
 
-                <td class="p-4"
-                    th:text="${m.Quiz02}"></td>
+                    <td class="p-4 text-white"
+                        th:text="${m.Quiz03}"></td>
 
-                <td class="p-4"
-                    th:text="${m.Quiz03}"></td>
+                    <td class="p-4 text-white"
+                        th:text="${m.midMarks}"></td>
 
-                <td class="p-4"
-                    th:text="${m.midMarks}"></td>
+                    <td class="p-4 text-white"
+                        th:text="${m.endMarks}"></td>
 
-                <td class="p-4"
-                    th:text="${m.endMarks}"></td>
+                    <td class="p-4 font-bold text-yellow-300"
+                        th:text="${m.totalMarks}"></td>
 
-                <td class="p-4 font-bold text-blue-600"
-                    th:text="${m.totalMarks}"></td>
+                    <td class="p-4 font-bold text-green-300"
+                        th:text="${m.grade}"></td>
 
-                <td class="p-4 font-bold text-green-600"
-                    th:text="${m.grade}"></td>
+                    <td class="p-4 text-white"
+                        th:text="${m.subjectName}"></td>
 
-                <td class="p-4"
-                    th:text="${m.subjectName}"></td>
+                    <td class="p-4 text-white"
+                        th:text="${m.subjectCode}"></td>
 
-                <td class="p-4"
-                    th:text="${m.subjectCode}"></td>
+                </tr>
 
-            </tr>
+                </tbody>
 
-            </tbody>
+            </table>
 
-        </table>
+        </div>
 
     </div>
 
@@ -144,6 +186,18 @@
          class="mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl">
 
         <p th:text="${error}"></p>
+
+    </div>
+
+    <!-- Footer -->
+
+    <div class="mt-8 text-center">
+
+        <span class="bg-white/10 px-4 py-2 rounded-full text-white text-sm">
+
+            👨‍💻 Developed by Danuja Illeperuma
+
+        </span>
 
     </div>
 
